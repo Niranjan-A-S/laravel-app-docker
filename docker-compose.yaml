@@ -11,10 +11,13 @@ services:
             dockerfile: php.dockerfile
         volumes:
             - ./src:/var/www/html:delegated
-    # mysql:
+    mysql:
+        image: mysql:8.4.0
+        # restart: always
+        env_file:
+            - ./env/.env.mysql
     # composer:
     # artisan:
     # npm
 
     # delegated option is used for performance optimization = read more
-    
