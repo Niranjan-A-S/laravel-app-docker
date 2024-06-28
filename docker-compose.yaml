@@ -5,6 +5,7 @@ services:
             - '8000:80'
         volumes:
             - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+            - ./src:/var/www/html
     php:
         build:
             context: ./dockerfiles
@@ -16,7 +17,12 @@ services:
         # restart: always
         env_file:
             - ./env/.env.mysql
-    # composer:
+    composer:
+        build: 
+            context: ./dockerfiles
+            dockerfile: composer.dockerfile
+        volumes:
+            - ./src:/var/www/html
     # artisan:
     # npm
 
